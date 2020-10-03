@@ -3,6 +3,7 @@ using BetterTravel.Bot.Dialogs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,16 @@ namespace BetterTravel.Bot
 
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
 
-            services.AddTransient<IBot, DialogBot<MainDialog>>();
+            // remove singletons
+            services.AddSingleton<IStorage, MemoryStorage>();
+            services.AddSingleton<IStateService, StateService>();
+
+            services.AddSingleton<UserState>();
+            services.AddSingleton<ConversationState>();
+            services.AddSingleton<DialogState>();
+
+            services.AddSingleton<Dialog, MainDialog>();
+            services.AddSingleton<IBot, DialogBot<MainDialog>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

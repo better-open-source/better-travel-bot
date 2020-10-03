@@ -10,26 +10,46 @@ namespace BetterTravel.Bot.Bots
 {
     public sealed class DialogBot<T> : ActivityHandler where T : Dialog
     {
+        private readonly Dialog _dialog;
         private readonly ILogger _logger;
+        private readonly IStateService _stateService;
 
-        public DialogBot(ILogger<DialogBot<T>> logger)
+        public DialogBot(ILogger<DialogBot<T>> logger, Dialog dialog, IStateService stateService)
         {
             _logger = logger;
+            _dialog = dialog;
+            _stateService = stateService;
         }
 
-        protected override Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMembersAddedAsync(
+            IList<ChannelAccount> membersAdded, 
+            ITurnContext<IConversationUpdateActivity> turnContext, 
+            CancellationToken cancellationToken)
         {
-            return base.OnMembersAddedAsync(membersAdded, turnContext, cancellationToken);
+            const string welcomeText = "Hello and welcome!";
+            foreach (var member in membersAdded)
+            {
+                if (member.Id != turnContext.Activity.Recipient.Id)
+                {
+                    await turnContext.SendActivityAsync(
+                        MessageFactory.Text(welcomeText, welcomeText), 
+                        cancellationToken);
+                }
+            }
         }
 
-        public override Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = new CancellationToken())
+        public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default)
         {
-            return base.OnTurnAsync(turnContext, cancellationToken);
+            await base.OnTurnAsync(turnContext, cancellationToken);
+
+            await _stateService.SaveConversationStateChangesAsync(turnContext, cancellationToken);
+            await _stateService.SaveUserStateChangesAsync(turnContext, cancellationToken);
         }
 
-        protected override Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            return base.OnMessageActivityAsync(turnContext, cancellationToken);
+            _logger.LogInformation("Running dialog with Message Activity.");
+            await _dialog.RunAsync(turnContext, _stateService.DialogStateAccessor, cancellationToken);
         }
     }
 }
