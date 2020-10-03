@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
 
-namespace BetterTravel.BotApi.Controllers
+namespace BetterTravel.Bot.Controllers
 {
     [Route("api/messages")]
     [ApiController]

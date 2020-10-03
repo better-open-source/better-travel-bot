@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace BetterTravel.BotApi
+namespace BetterTravel.Bot
 {
     public class Program
     {

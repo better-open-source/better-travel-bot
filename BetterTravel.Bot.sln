@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9E6A89F6-6C8D-4A1A-9A16-22498755FDB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.BotApi", "src\BetterTravel.BotApi\BetterTravel.BotApi.csproj", "{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterTravel.Bot", "src\BetterTravel.Bot\BetterTravel.Bot.csproj", "{A4DE7218-E723-4995-92AC-FD1B7A347A7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4DE7218-E723-4995-92AC-FD1B7A347A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4DE7218-E723-4995-92AC-FD1B7A347A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4DE7218-E723-4995-92AC-FD1B7A347A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4DE7218-E723-4995-92AC-FD1B7A347A7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{99F4B73F-5EDE-44E4-819D-24D6BF9ADBE3} = {9E6A89F6-6C8D-4A1A-9A16-22498755FDB3}
+		{A4DE7218-E723-4995-92AC-FD1B7A347A7C} = {9E6A89F6-6C8D-4A1A-9A16-22498755FDB3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4EB06FD-C27F-46EA-88D6-105AAB10F364}

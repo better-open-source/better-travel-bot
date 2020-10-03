@@ -6,7 +6,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
 
-namespace BetterTravel.BotApi.Bots
+namespace BetterTravel.Bot.Bots
 {
     public sealed class DialogBot<T> : ActivityHandler where T : Dialog
     {

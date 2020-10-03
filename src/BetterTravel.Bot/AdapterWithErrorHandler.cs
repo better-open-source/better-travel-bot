@@ -3,7 +3,7 @@ using Microsoft.Bot.Builder.TraceExtensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace BetterTravel.BotApi
+namespace BetterTravel.Bot
 {
     public class AdapterWithErrorHandler : BotFrameworkHttpAdapter
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
 
-namespace BetterTravel.BotApi.Dialogs
+namespace BetterTravel.Bot.Dialogs
 {
     public abstract class BaseDialog : ComponentDialog
     {

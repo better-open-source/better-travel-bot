@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 
-namespace BetterTravel.BotApi.Dialogs
+namespace BetterTravel.Bot.Dialogs
 {
     public sealed class MainDialog : BaseDialog
     {
