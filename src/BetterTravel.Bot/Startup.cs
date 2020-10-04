@@ -1,10 +1,12 @@
-﻿using BetterTravel.Bot.Bots;
+﻿using System.Collections.Concurrent;
+using BetterTravel.Bot.Bots;
 using BetterTravel.Bot.Dialogs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
+using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,17 +27,17 @@ namespace BetterTravel.Bot
             services.AddControllers().AddNewtonsoftJson();
 
             services.AddSingleton<IBotFrameworkHttpAdapter, AdapterWithErrorHandler>();
+            services.AddSingleton<ConcurrentDictionary<string, ConversationReference>>();
 
-            // remove singletons
-            services.AddSingleton<IStorage, MemoryStorage>();
-            services.AddSingleton<IStateService, StateService>();
+            services.AddScoped<IStorage, MemoryStorage>();
+            services.AddScoped<IStateService, StateService>();
 
-            services.AddSingleton<UserState>();
-            services.AddSingleton<ConversationState>();
-            services.AddSingleton<DialogState>();
+            services.AddTransient<UserState>();
+            services.AddTransient<ConversationState>();
+            services.AddTransient<DialogState>();
 
-            services.AddSingleton<Dialog, MainDialog>();
-            services.AddSingleton<IBot, DialogBot<MainDialog>>();
+            services.AddTransient<Dialog, MainDialog>();
+            services.AddTransient<IBot, DialogBot<MainDialog>>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
