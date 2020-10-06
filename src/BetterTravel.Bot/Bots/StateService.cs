@@ -8,7 +8,6 @@ namespace BetterTravel.Bot.Bots
     public interface IStateService
     {
         IStatePropertyAccessor<DialogState> DialogStateAccessor { get; }
-        IStatePropertyAccessor<WelcomeUserState> WelcomeUserStateAccessor { get; }
 
         Task SaveUserStateChangesAsync(ITurnContext turnContext, CancellationToken cancellationToken);
         Task SaveConversationStateChangesAsync(ITurnContext turnContext, CancellationToken cancellationToken);
@@ -30,11 +29,9 @@ namespace BetterTravel.Bot.Bots
         private void InitializeAccessors()
         {
             DialogStateAccessor = _conversationState.CreateProperty<DialogState>($"{nameof(StateService)}.{nameof(DialogState)}");
-            WelcomeUserStateAccessor = _userState.CreateProperty<WelcomeUserState>($"{nameof(StateService)}.{nameof(WelcomeUserState)}");
         }
 
         public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; private set; }
-        public IStatePropertyAccessor<WelcomeUserState> WelcomeUserStateAccessor { get; private set; }
 
         public async Task SaveUserStateChangesAsync(ITurnContext turnContext, CancellationToken cancellationToken) => 
             await _userState.SaveChangesAsync(turnContext, true, cancellationToken);
